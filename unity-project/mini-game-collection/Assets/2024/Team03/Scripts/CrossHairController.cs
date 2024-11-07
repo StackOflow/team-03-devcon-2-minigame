@@ -9,7 +9,7 @@ namespace MiniGameCollection.Games2024.Team03
         public RectTransform p1CrossHair, p2Crosshair;  // The RectTransform of the CrossHairs (UI element)
         public float moveSpeed = 10f;    // Speed of CrossHair movement
         public Camera playerCamera;      // Reference to the player's camera
-        public float rayDistance = 10f;  // Distance the ray will travel
+        public float rayDistance = 10000f;  // Distance the ray will travel
         public LayerMask enemyLayer;     // Layer mask to detect only enemies
         public LayerMask hostageLayer;   // Layer mask to detect only hostages
 
@@ -87,6 +87,7 @@ namespace MiniGameCollection.Games2024.Team03
         {
             // Create a ray from the camera's position in the forward direction
             Ray p1Ray = playerCamera.ScreenPointToRay(p1CrossHair.position); // Cast ray from CrossHair screen position
+            Debug.DrawRay(transform.position, transform.forward, Color.green);
 
             RaycastHit p1Hit;
 
@@ -109,6 +110,8 @@ namespace MiniGameCollection.Games2024.Team03
         {
             // Create a ray from the camera's position in the forward direction
             Ray p2Ray = playerCamera.ScreenPointToRay(p2Crosshair.position); // Cast ray from CrossHair screen position
+            Debug.DrawRay(transform.position, transform.forward, Color.green);
+
 
             RaycastHit p2Hit;
             if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, enemyLayer))
