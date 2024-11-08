@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace MiniGameCollection.Games2024.Team03
 {
-    public class EnemyHealth : MonoBehaviour
+    public class PlayerHealth : MonoBehaviour
     {
         public float maxHealth = 10f;
-        public float currentHealth;    // The current health of the enemy
+        public float currentHealth;    // The current health of the player
 
-        public Animator enemyAnim;
+        public Animator hurtScreenAnim;
 
         void Start()
         {
@@ -18,6 +18,9 @@ namespace MiniGameCollection.Games2024.Team03
 
         public void TakeDamage(float damage)
         {
+            Debug.Log(currentHealth);
+            hurtScreenAnim.SetBool("isHurt", true);
+
             // Reduce current health by damage
             currentHealth -= damage;
 
@@ -26,20 +29,23 @@ namespace MiniGameCollection.Games2024.Team03
             {
                 Die();
             }
+            else
+            {
+                StartCoroutine(ResetHealthState());
+            }
         }
 
-        // Method called when the enemy's health reaches zero
+        // Method called when the player's health reaches zero
         private void Die()
         {
-            enemyAnim.SetBool("isDead", true);
-            Debug.Log(gameObject.name + " has died!");
-            StartCoroutine(SetEnemyAnim());
+            Debug.Log("You have died!");
+            StartCoroutine(ResetHealthState());
         }
 
-        IEnumerator SetEnemyAnim()
+        IEnumerator ResetHealthState()
         {
-            yield return new WaitForSeconds(1f);
-            Destroy(gameObject);
+            yield return new WaitForSeconds(0.2f);
+            hurtScreenAnim.SetBool("isHurt", false);
         }
     }
 }
