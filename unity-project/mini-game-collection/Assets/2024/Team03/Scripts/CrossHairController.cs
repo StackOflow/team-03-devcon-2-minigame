@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace MiniGameCollection.Games2024.Team03
 {
@@ -12,6 +14,10 @@ namespace MiniGameCollection.Games2024.Team03
         public float rayDistance = 10000f;  // Distance the ray will travel
         public LayerMask enemyLayer;     // Layer mask to detect only enemies
         public LayerMask hostageLayer;   // Layer mask to detect only hostages
+        public LayerMask enviromentLayer;   // Layer mask to detect only hostages
+
+        public GameObject sparkPE; // The particle effect prefab 
+        public GameObject bloodPE; 
 
         private Vector2 screenBounds;    // Store screen bounds for limiting movement
 
@@ -94,15 +100,18 @@ namespace MiniGameCollection.Games2024.Team03
             if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, enemyLayer))
             {
                 Debug.Log("P1 Hit enemy: " + p1Hit.collider.name);
+                Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
                 //hit.collider.GetComponent<Enemy>().TakeDamage(10);
             }
             else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, hostageLayer))
             {
                 Debug.Log("P1 Hit hostage: " + p1Hit.collider.name);
+                Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
             }
-            else
+            else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, enviromentLayer))
             {
                 Debug.Log("P1 Nothing hit.");
+                Instantiate(sparkPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
             }
         }
 
@@ -117,15 +126,18 @@ namespace MiniGameCollection.Games2024.Team03
             if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, enemyLayer))
             {
                 Debug.Log("P2 Hit enemy: " + p2Hit.collider.name);
+                Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
                 //hit.collider.GetComponent<Enemy>().TakeDamage(10);
             }
             else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, hostageLayer))
             {
                 Debug.Log("P2 Hit hostage: " + p2Hit.collider.name);
+                Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
             }
-            else
+            else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, enviromentLayer))
             {
-                Debug.Log("P2 Nothing hit.");
+                Debug.Log("P1 Nothing hit.");
+                Instantiate(sparkPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
             }
         }
     }
