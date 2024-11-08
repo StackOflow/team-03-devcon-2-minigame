@@ -9,20 +9,25 @@ namespace MiniGameCollection.Games2024.Team03
     public class CrossHairController : MonoBehaviour
     {
         public RectTransform p1CrossHair, p2Crosshair;  // The RectTransform of the CrossHairs (UI element)
-        public float moveSpeed = 10f;    // Speed of CrossHair movement
-        public Camera playerCamera;      // Reference to the player's camera
-        public float rayDistance = 10000f;  // Distance the ray will travel
-        public LayerMask enemyLayer;     // Layer mask to detect only enemies
-        public LayerMask hostageLayer;   // Layer mask to detect only hostages
-        public LayerMask enviromentLayer;   // Layer mask to detect only hostages
+        public float moveSpeed = 10f;                   // Speed of CrossHair movement
+        public Camera playerCamera;                     // Reference to the player's camera
+        public float rayDistance = 10000f;              // Distance the ray will travel
+        public LayerMask enemyLayer;                    // Layer mask to detect only enemies
+        public LayerMask hostageLayer;                  // Layer mask to detect only hostages
+        public LayerMask enviromentLayer;               // Layer mask to detect only hostages
 
-        public GameObject sparkPE; // The particle effect prefab 
+        public float p1ShootDelay = 0.3f;                 // Time delay between each shot (in seconds)
+        private float p1NextShootTime = 0f;               // Time when the next shot can be fired
+        public float p2ShootDelay = 0.3f;                 // Time delay between each shot (in seconds)
+        private float p2NextShootTime = 0f;               // Time when the next shot can be fired
+
+        public GameObject sparkPE;                      // The particle effect prefab 
         public GameObject bloodPE;
 
         public Animator animP1;
         public Animator animP2;
 
-        private Vector2 screenBounds;    // Store screen bounds for limiting movement
+        private Vector2 screenBounds;                   // Store screen bounds for limiting movement
 
         void Start()
         {
@@ -36,13 +41,15 @@ namespace MiniGameCollection.Games2024.Team03
             MoveP1CrossHair();
             MoveP2CrossHair();
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && Time.time >= p2NextShootTime)
             {
                 ShootP2Raycast();
+                p2NextShootTime = Time.time + p2ShootDelay;
             }
-            if (Input.GetKeyDown(KeyCode.Comma))
+            if (Input.GetKeyDown(KeyCode.Comma) && Time.time >= p1NextShootTime)
             {
                 ShootP1Raycast();
+                p1NextShootTime = Time.time + p1ShootDelay;
             }
         }
 
