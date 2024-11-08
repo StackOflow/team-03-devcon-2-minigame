@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 207989862}
   - component: {fileID: 207989864}
   - component: {fileID: 207989863}
+  - component: {fileID: 207989865}
   m_Layer: 5
   m_Name: 'P2CrossHair '
   m_TagString: Untagged
@@ -302,6 +303,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207989861}
   m_CullTransparentMesh: 1
+--- !u!95 &207989865
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207989861}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9ce89326d4d61604f814c1b0768d22a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &218942642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1037,7 @@ GameObject:
   - component: {fileID: 685258388}
   - component: {fileID: 685258387}
   - component: {fileID: 685258386}
+  - component: {fileID: 685258389}
   m_Layer: 5
   m_Name: P1CrossHair
   m_TagString: Untagged
@@ -1069,6 +1092,8 @@ MonoBehaviour:
     m_Bits: 256
   sparkPE: {fileID: 1403146070375926007, guid: a5184f7d3476d8345883219ae72c4b04, type: 3}
   bloodPE: {fileID: 2790876793202887754, guid: 0ed900b020eec174fbfec576b351aa73, type: 3}
+  animP1: {fileID: 685258389}
+  animP2: {fileID: 207989865}
 --- !u!114 &685258387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,6 +1132,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685258384}
   m_CullTransparentMesh: 1
+--- !u!95 &685258389
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685258384}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4837805c78a6a8d40b7b9c8afe03a351, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &687402416
 GameObject:
   m_ObjectHideFlags: 0
