@@ -107,7 +107,16 @@ namespace MiniGameCollection.Games2024.Team03
             {
                 Debug.Log("P1 Hit enemy: " + p1Hit.collider.name);
                 Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
-                //hit.collider.GetComponent<Enemy>().TakeDamage(10);
+
+                EnemyHealth enemyHealth = p1Hit.collider.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    // Apply damage to the enemy
+                    enemyHealth.TakeDamage(1f);
+
+                    // Log the hit
+                    Debug.Log("Hit enemy: " + p1Hit.collider.name);
+                }
             }
             else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, hostageLayer))
             {
@@ -130,13 +139,21 @@ namespace MiniGameCollection.Games2024.Team03
             Ray p2Ray = playerCamera.ScreenPointToRay(p2Crosshair.position); // Cast ray from CrossHair screen position
             Debug.DrawRay(transform.position, transform.forward, Color.green);
 
-
             RaycastHit p2Hit;
             if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, enemyLayer))
             {
                 Debug.Log("P2 Hit enemy: " + p2Hit.collider.name);
                 Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
-                //hit.collider.GetComponent<Enemy>().TakeDamage(10);
+
+                EnemyHealth enemyHealth = p2Hit.collider.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
+                {
+                    // Apply damage to the enemy
+                    enemyHealth.TakeDamage(1f);
+
+                    // Log the hit
+                    Debug.Log("Hit enemy: " + p2Hit.collider.name);
+                }
             }
             else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, hostageLayer))
             {
