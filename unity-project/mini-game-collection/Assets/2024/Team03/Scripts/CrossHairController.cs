@@ -17,7 +17,10 @@ namespace MiniGameCollection.Games2024.Team03
         public LayerMask enviromentLayer;   // Layer mask to detect only hostages
 
         public GameObject sparkPE; // The particle effect prefab 
-        public GameObject bloodPE; 
+        public GameObject bloodPE;
+
+        public Animator animP1;
+        public Animator animP2;
 
         private Vector2 screenBounds;    // Store screen bounds for limiting movement
 
@@ -91,6 +94,9 @@ namespace MiniGameCollection.Games2024.Team03
 
         void ShootP1Raycast()
         {
+            animP1.SetBool("isShoot", true);
+            StartCoroutine(ResetP1Anim());
+
             // Create a ray from the camera's position in the forward direction
             Ray p1Ray = playerCamera.ScreenPointToRay(p1CrossHair.position); // Cast ray from CrossHair screen position
             Debug.DrawRay(transform.position, transform.forward, Color.green);
@@ -117,6 +123,9 @@ namespace MiniGameCollection.Games2024.Team03
 
         void ShootP2Raycast()
         {
+            animP2.SetBool("isShoot", true);
+            StartCoroutine(ResetP2Anim());
+
             // Create a ray from the camera's position in the forward direction
             Ray p2Ray = playerCamera.ScreenPointToRay(p2Crosshair.position); // Cast ray from CrossHair screen position
             Debug.DrawRay(transform.position, transform.forward, Color.green);
@@ -139,6 +148,17 @@ namespace MiniGameCollection.Games2024.Team03
                 Debug.Log("P1 Nothing hit.");
                 Instantiate(sparkPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
             }
+        }
+
+        IEnumerator ResetP1Anim()
+        {
+            yield return new WaitForSeconds(0.05f);
+            animP1.SetBool("isShoot", false);
+        }
+        IEnumerator ResetP2Anim()
+        {
+            yield return new WaitForSeconds(0.05f);
+            animP2.SetBool("isShoot", false);
         }
     }
 }
