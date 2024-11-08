@@ -24,7 +24,7 @@ namespace MiniGameCollection.Games2024.Team03
         void Start()
         {
             // Initialize screen bounds (confines the CrossHair within the screen size)
-            screenBounds = new Vector2(Screen.width, Screen.height);
+            screenBounds = new Vector2(Screen.width - 50f, Screen.height - 60f);
         }
 
         void Update()
