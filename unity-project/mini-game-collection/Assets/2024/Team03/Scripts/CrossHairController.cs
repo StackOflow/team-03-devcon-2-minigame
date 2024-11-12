@@ -16,9 +16,9 @@ namespace MiniGameCollection.Games2024.Team03
         public LayerMask hostageLayer;                  // Layer mask to detect only hostages
         public LayerMask enviromentLayer;               // Layer mask to detect only hostages
 
-        public float p1ShootDelay = 0.3f;                 // Time delay between each shot (in seconds)
+        public float p1ShootDelay = 0.1f;                 // Time delay between each shot (in seconds)
         private float p1NextShootTime = 0f;               // Time when the next shot can be fired
-        public float p2ShootDelay = 0.3f;                 // Time delay between each shot (in seconds)
+        public float p2ShootDelay = 0.1f;                 // Time delay between each shot (in seconds)
         private float p2NextShootTime = 0f;               // Time when the next shot can be fired
 
         public GameObject sparkPE;                      // The particle effect prefab 

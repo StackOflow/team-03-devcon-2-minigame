@@ -13,6 +13,7 @@ namespace MiniGameCollection.Games2024.Team03
         [SerializeField] float randomXPosition;
         [SerializeField] float positionY;
         [SerializeField] float positionZ;
+        [SerializeField] float rotationY;
 
         private void Update()
         {
@@ -27,7 +28,8 @@ namespace MiniGameCollection.Games2024.Team03
             while (enemyCount < maxEnemyCount) 
             {
                 Vector3 randomSpawnPosition = new Vector3(Random.Range(-randomXPosition, randomXPosition), positionY, positionZ);
-                Instantiate(Enemy, randomSpawnPosition, Quaternion.identity);
+                Quaternion rotSpawnPosition = new Quaternion(0, 180, 0, 0);
+                Instantiate(Enemy, randomSpawnPosition, rotSpawnPosition);
                 yield return new WaitForSeconds(timeBetweenSpawns);
                 enemyCount += 1;
             }
