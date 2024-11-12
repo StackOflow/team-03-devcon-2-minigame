@@ -1583,8 +1583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee6d4dc0ed5734daed2a3117ab4bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 0.7
-  damageAmount: 10
+  detectionRange: 4
+  damageAmount: 1
   damageInterval: 1
   playerLayer:
     serializedVersion: 2
