@@ -8,7 +8,7 @@ namespace MiniGameCollection.Games2024.Team03
     public class ApplyDamage : MonoBehaviour
     {
         public float detectionRange = 10f;  // Maximum distance at which the enemy can detect the player
-        public float damageAmount = 10f;    // Amount of damage to deal when the player is detected
+        public int damageAmount = 1;    // Amount of damage to deal when the player is detected
         public float damageInterval = 1f;   // Time interval between damage applications
 
         private float nextDamageTime = 0f;  // Timer to track damage intervals
@@ -49,7 +49,7 @@ namespace MiniGameCollection.Games2024.Team03
                         PlayerHealth playerHealth = hit.collider.GetComponent<PlayerHealth>();
                         if (playerHealth != null)
                         {
-                            playerHealth.TakeDamage((int)damageAmount);
+                            playerHealth.TakeDamage(damageAmount);
                             nextDamageTime = Time.time + damageInterval; // Reset the damage timer
                         }
                     }
