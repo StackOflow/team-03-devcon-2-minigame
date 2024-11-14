@@ -47,9 +47,5 @@ namespace MiniGameCollection.Games2024.Team03
                 transform.Translate(forward * speed * Time.deltaTime);
             }
         }
-
-
-
-
     }
 }
