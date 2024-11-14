@@ -16,10 +16,10 @@ namespace MiniGameCollection.Games2024.Team03
         public LayerMask hostageLayer;                  // Layer mask to detect only hostages
         public LayerMask enviromentLayer;               // Layer mask to detect only hostages
 
-        public float p1ShootDelay = 0.1f;                 // Time delay between each shot (in seconds)
-        private float p1NextShootTime = 0f;               // Time when the next shot can be fired
-        public float p2ShootDelay = 0.1f;                 // Time delay between each shot (in seconds)
-        private float p2NextShootTime = 0f;               // Time when the next shot can be fired
+        public float p1ShootDelay = 0.1f;               // Time delay between each shot (in seconds)
+        private float p1NextShootTime = 0f;             // Time when the next shot can be fired
+        public float p2ShootDelay = 0.1f;               // Time delay between each shot (in seconds)
+        private float p2NextShootTime = 0f;             // Time when the next shot can be fired
 
         public GameObject sparkPE;                      // The particle effect prefab 
         public GameObject bloodPE;
@@ -28,6 +28,8 @@ namespace MiniGameCollection.Games2024.Team03
         public Animator animP2;
 
         private Vector2 screenBounds;                   // Store screen bounds for limiting movement
+
+        public ScoreManager scoreManager;               // Reference to the ScoreManager
 
         void Start()
         {
@@ -120,7 +122,7 @@ namespace MiniGameCollection.Games2024.Team03
                 {
                     // Apply damage to the enemy
                     enemyHealth.TakeDamage(1f);
-
+                    scoreManager.AddP1Score(100);
                     // Log the hit
                     Debug.Log("Hit enemy: " + p1Hit.collider.name);
                 }
@@ -157,7 +159,7 @@ namespace MiniGameCollection.Games2024.Team03
                 {
                     // Apply damage to the enemy
                     enemyHealth.TakeDamage(1f);
-
+                    scoreManager.AddP2Score(100);
                     // Log the hit
                     Debug.Log("Hit enemy: " + p2Hit.collider.name);
                 }
