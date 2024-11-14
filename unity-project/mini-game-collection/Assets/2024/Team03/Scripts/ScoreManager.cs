@@ -31,6 +31,18 @@ namespace MiniGameCollection.Games2024.Team03
             p2Score += points;
             UpdateScoreUI();
         }
+        public void ReduceP1Score(int punish)
+        {
+            p1Score -= punish;
+            UpdateScoreUI();
+        }
+        // Method to increase the score by a certain amount (called when player earns points)
+        public void ReduceP2Score(int punish)
+        {
+            p2Score -= punish;
+            UpdateScoreUI();
+        }
+
         // Method to reset the score, for example when restarting the game
         public void ResetScore()
         {

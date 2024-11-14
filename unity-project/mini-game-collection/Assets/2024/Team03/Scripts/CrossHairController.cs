@@ -130,6 +130,7 @@ namespace MiniGameCollection.Games2024.Team03
             else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, hostageLayer))
             {
                 Debug.Log("P1 Hit hostage: " + p1Hit.collider.name);
+                scoreManager.ReduceP1Score(100);
                 Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
             }
             else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, enviromentLayer))
@@ -167,6 +168,7 @@ namespace MiniGameCollection.Games2024.Team03
             else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, hostageLayer))
             {
                 Debug.Log("P2 Hit hostage: " + p2Hit.collider.name);
+                scoreManager.ReduceP2Score(100);
                 Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
             }
             else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, enviromentLayer))
