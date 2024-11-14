@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MiniGameCollection.Games2024.Team03
 {
@@ -43,6 +44,7 @@ namespace MiniGameCollection.Games2024.Team03
         private void Die()
         {
             Debug.Log("You have died!");
+            SceneManager.LoadScene("GameOver");
             StartCoroutine(ResetHealthState());
         }
 
