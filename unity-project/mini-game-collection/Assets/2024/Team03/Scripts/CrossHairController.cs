@@ -16,10 +16,10 @@ namespace MiniGameCollection.Games2024.Team03
         public LayerMask hostageLayer;                  // Layer mask to detect only hostages
         public LayerMask enviromentLayer;               // Layer mask to detect only hostages
 
-        public float p1ShootDelay = 0.3f;                 // Time delay between each shot (in seconds)
-        private float p1NextShootTime = 0f;               // Time when the next shot can be fired
-        public float p2ShootDelay = 0.3f;                 // Time delay between each shot (in seconds)
-        private float p2NextShootTime = 0f;               // Time when the next shot can be fired
+        public float p1ShootDelay = 0.1f;               // Time delay between each shot (in seconds)
+        private float p1NextShootTime = 0f;             // Time when the next shot can be fired
+        public float p2ShootDelay = 0.1f;               // Time delay between each shot (in seconds)
+        private float p2NextShootTime = 0f;             // Time when the next shot can be fired
 
         public GameObject sparkPE;                      // The particle effect prefab 
         public GameObject bloodPE;
@@ -28,6 +28,8 @@ namespace MiniGameCollection.Games2024.Team03
         public Animator animP2;
 
         private Vector2 screenBounds;                   // Store screen bounds for limiting movement
+
+        public ScoreManager scoreManager;               // Reference to the ScoreManager
 
         void Start()
         {
@@ -115,12 +117,12 @@ namespace MiniGameCollection.Games2024.Team03
                 Debug.Log("P1 Hit enemy: " + p1Hit.collider.name);
                 Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
 
-                EnemyHealth enemyHealth = p1Hit.collider.GetComponent<EnemyHealth>();
-                if (enemyHealth != null)
+                EnemyManager enemyHealth = p1Hit.collider.GetComponent<EnemyManager>();
+                if (enemyHealth != null && !enemyHealth.isDead)
                 {
                     // Apply damage to the enemy
                     enemyHealth.TakeDamage(1f);
-
+                    scoreManager.AddP1Score(50);
                     // Log the hit
                     Debug.Log("Hit enemy: " + p1Hit.collider.name);
                 }
@@ -128,6 +130,7 @@ namespace MiniGameCollection.Games2024.Team03
             else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, hostageLayer))
             {
                 Debug.Log("P1 Hit hostage: " + p1Hit.collider.name);
+                scoreManager.ReduceP1Score(100);
                 Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
             }
             else if (Physics.Raycast(p1Ray, out p1Hit, rayDistance, enviromentLayer))
@@ -152,12 +155,12 @@ namespace MiniGameCollection.Games2024.Team03
                 Debug.Log("P2 Hit enemy: " + p2Hit.collider.name);
                 Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
 
-                EnemyHealth enemyHealth = p2Hit.collider.GetComponent<EnemyHealth>();
-                if (enemyHealth != null)
+                EnemyManager enemyHealth = p2Hit.collider.GetComponent<EnemyManager>();
+                if (enemyHealth != null && !enemyHealth.isDead)
                 {
                     // Apply damage to the enemy
                     enemyHealth.TakeDamage(1f);
-
+                    scoreManager.AddP2Score(50);
                     // Log the hit
                     Debug.Log("Hit enemy: " + p2Hit.collider.name);
                 }
@@ -165,6 +168,7 @@ namespace MiniGameCollection.Games2024.Team03
             else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, hostageLayer))
             {
                 Debug.Log("P2 Hit hostage: " + p2Hit.collider.name);
+                scoreManager.ReduceP2Score(100);
                 Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
             }
             else if (Physics.Raycast(p2Ray, out p2Hit, rayDistance, enviromentLayer))
