@@ -117,7 +117,7 @@ namespace MiniGameCollection.Games2024.Team03
                 Debug.Log("P1 Hit enemy: " + p1Hit.collider.name);
                 Instantiate(bloodPE, p1Hit.point, Quaternion.LookRotation(p1Hit.normal));
 
-                EnemyHealth enemyHealth = p1Hit.collider.GetComponent<EnemyHealth>();
+                EnemyManager enemyHealth = p1Hit.collider.GetComponent<EnemyManager>();
                 if (enemyHealth != null)
                 {
                     // Apply damage to the enemy
@@ -155,7 +155,7 @@ namespace MiniGameCollection.Games2024.Team03
                 Debug.Log("P2 Hit enemy: " + p2Hit.collider.name);
                 Instantiate(bloodPE, p2Hit.point, Quaternion.LookRotation(p2Hit.normal));
 
-                EnemyHealth enemyHealth = p2Hit.collider.GetComponent<EnemyHealth>();
+                EnemyManager enemyHealth = p2Hit.collider.GetComponent<EnemyManager>();
                 if (enemyHealth != null)
                 {
                     // Apply damage to the enemy

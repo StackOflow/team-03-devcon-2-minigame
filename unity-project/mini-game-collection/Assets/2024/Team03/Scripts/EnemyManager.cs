@@ -11,7 +11,7 @@ namespace MiniGameCollection.Games2024.Team03
 
         public Animator enemyAnim;
 
-        public float detectionRange = 10f;  // Maximum distance at which the enemy can detect the player
+        public float detectionRange;  // Maximum distance at which the enemy can detect the player
         public int damageAmount = 1;    // Amount of damage to deal when the player is detected
         public float damageInterval = 1f;   // Time interval between damage applications
 
@@ -57,7 +57,7 @@ namespace MiniGameCollection.Games2024.Team03
             // Perform the raycast to see if the player is within the detection range
             if (Physics.Raycast(ray, out hit, 0.7f, playerLayer))
             {
-                transform.Translate(pause);
+                transform.position = hit.point;
             }
             else
             {
