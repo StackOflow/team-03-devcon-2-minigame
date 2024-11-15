@@ -8,6 +8,7 @@ namespace MiniGameCollection.Games2024.Team03
     {
         public float maxHealth = 10f;
         public float currentHealth;    // The current health of the enemy
+        public bool isDead = false;
 
         public Animator enemyAnim;
 
@@ -22,7 +23,6 @@ namespace MiniGameCollection.Games2024.Team03
 
         public float speed = 5f; // Speed at which the GameObject moves forward
         private Vector3 forward = new Vector3(0, 0, 1);
-        private Vector3 pause = new Vector3(0, 0, 0);
 
         void Start()
         {
@@ -49,20 +49,23 @@ namespace MiniGameCollection.Games2024.Team03
                 return;
             }
 
-            // Cast a ray from the enemy's position to the player
-            Vector3 directionToPlayer = player.position - transform.position;
-            Ray ray = new Ray(transform.position, directionToPlayer);
-            RaycastHit hit;
+            if (!isDead)
+            { 
+                // Cast a ray from the enemy's position to the player
+                Vector3 directionToPlayer = player.position - transform.position;
+                Ray ray = new Ray(transform.position, directionToPlayer);
+                RaycastHit hit;
 
-            // Perform the raycast to see if the player is within the detection range
-            if (Physics.Raycast(ray, out hit, 0.7f, playerLayer))
-            {
-                transform.position = hit.point;
-            }
-            else
-            {
-                // Move the GameObject forward along its local z-axis
-                transform.Translate(forward * speed * Time.deltaTime);
+                // Perform the raycast to see if the player is within the detection range
+                if (Physics.Raycast(ray, out hit, 0.7f, playerLayer))
+                {
+                    transform.position = hit.point;
+                }
+                else
+                {
+                   // Move the GameObject forward along its local z-axis
+                     transform.Translate(forward * speed * Time.deltaTime);
+                }
             }
         }
 
@@ -73,26 +76,29 @@ namespace MiniGameCollection.Games2024.Team03
                 return;
             }
 
-            // Cast a ray from the enemy's position to the player
-            Vector3 directionToPlayer = player.position - transform.position;
-            Ray ray = new Ray(transform.position, directionToPlayer);
-            RaycastHit hit;
-
-            // Perform the raycast to see if the player is within the detection range
-            if (Physics.Raycast(ray, out hit, detectionRange, playerLayer))
+            if (!isDead)
             {
-                // Only apply damage if enough time has passed
-                if (Time.time >= nextDamageTime)
-                {
-                    // Apply damage to the player
-                    PlayerHealth playerHealth = hit.collider.GetComponent<PlayerHealth>();
-                    if (playerHealth != null)
-                    {
-                        playerHealth.TakeDamage(damageAmount);
-                        nextDamageTime = Time.time + damageInterval; // Reset the damage timer
-                    }
-                }
+                // Cast a ray from the enemy's position to the player
+                Vector3 directionToPlayer = player.position - transform.position;
+                Ray ray = new Ray(transform.position, directionToPlayer);
+                RaycastHit hit;
 
+                // Perform the raycast to see if the player is within the detection range
+                if (Physics.Raycast(ray, out hit, detectionRange, playerLayer))
+                {
+                    // Only apply damage if enough time has passed
+                    if (Time.time >= nextDamageTime)
+                    {
+                        // Apply damage to the player
+                        PlayerHealth playerHealth = hit.collider.GetComponent<PlayerHealth>();
+                        if (playerHealth != null)
+                        {
+                            playerHealth.TakeDamage(damageAmount);
+                            nextDamageTime = Time.time + damageInterval; // Reset the damage timer
+                        }
+                    }
+
+                }
             }
         }
 
@@ -111,6 +117,7 @@ namespace MiniGameCollection.Games2024.Team03
         // Method called when the enemy's health reaches zero
         private void Die()
         {
+            isDead = true;
             enemyAnim.SetBool("isDead", true);
             Debug.Log(gameObject.name + " has died!");
             StartCoroutine(SetEnemyAnim());

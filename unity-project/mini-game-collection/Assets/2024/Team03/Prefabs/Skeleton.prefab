@@ -1489,8 +1489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1d2224d877a374aaed8964191602bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 3
   currentHealth: 0
+  isDead: 0
   enemyAnim: {fileID: 6360391632472457979}
   detectionRange: 1
   damageAmount: 1
