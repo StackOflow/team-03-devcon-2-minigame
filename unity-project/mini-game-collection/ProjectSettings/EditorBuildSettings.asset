@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2024/Team03/Scene/2024-Team03-Game.unity
     guid: 35afe90ec393d1a4488d8fb83169b102
+  - enabled: 1
+    path: Assets/2024/Team03/Scene/GameOver.unity
+    guid: b3bcc8b213051de4ebeb8640e9157a63
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}
