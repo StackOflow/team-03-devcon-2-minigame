@@ -13,6 +13,9 @@ namespace MiniGameCollection.Games2024.Team03
         public TextMeshProUGUI p2ScoreText;
         public int p2Score = 0;
 
+        public TextMeshProUGUI p1finalScore;
+        public TextMeshProUGUI p2finalScore;
+
         private void Start()
         {
             // Update the score UI at the start of the game
@@ -62,6 +65,15 @@ namespace MiniGameCollection.Games2024.Team03
             if (p2ScoreText != null)
             {
                 p2ScoreText.text = p2Score.ToString();
+            }
+
+            if (p1finalScore != null)
+            {
+                p1finalScore.text = p1Score.ToString();
+            }
+            if (p2finalScore != null)
+            {
+                p2finalScore.text = p2Score.ToString();
             }
         }
     }
