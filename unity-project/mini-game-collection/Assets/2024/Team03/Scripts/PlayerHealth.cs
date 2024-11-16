@@ -44,7 +44,7 @@ namespace MiniGameCollection.Games2024.Team03
         private void Die()
         {
             Debug.Log("You have died!");
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("2024-Team03-GameOver");
             StartCoroutine(ResetHealthState());
         }
 

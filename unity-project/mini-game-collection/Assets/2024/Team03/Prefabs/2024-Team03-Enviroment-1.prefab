@@ -10324,7 +10324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3558853315924612380}
   m_Layer: 0
-  m_Name: EnviromentObjects
+  m_Name: 2024-Team03-Enviroment-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
